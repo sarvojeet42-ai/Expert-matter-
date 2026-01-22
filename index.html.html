@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpertMatter | Premium Legal & Wealth Advisory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-blue: #061a33;
+            --brand-green: #ccff00;
+            --text-white: #ffffff;
+            --text-grey: #b0b8c4;
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --modal-bg: #0a1f3d;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-blue);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(6, 26, 51, 0.95);
+            position: fixed;
+            width: 92%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* LOGO MADE BIGGER */
+        .logo img {
+            height: 160px; /* Significantly larger */
+            width: 100%;
+            transition: transform 0.8s;
+        }
+
+        /* CONSULT BUTTON MADE SMALLER */
+        .consult-btn {
+            background-color: var(--brand-green);
+            color: #000;
+            padding: 8px 16px; /* Compact padding */
+            font-weight: 600;
+            font-size: 0.8rem; /* Smaller text */
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.3s;
+        }
+
+        .consult-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(204, 255, 0, 0.4);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        /* NEW HOVER ANIMATION: NEON GREEN GLOW */
+        .nav-links li {
+            font-size: 0.95rem;
+            color: var(--text-white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links li:hover {
+            color: var(--brand-green);
+            text-shadow: 0 0 10px rgba(204, 255, 0, 0.6); /* The Glow Effect */
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .login-btn {
+            background: transparent;
+            border: 1px solid var(--text-white);
+            color: var(--text-white);
+            padding: 8px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .hamburger {
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: relative;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--brand-green);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(204, 255, 0, 0.5);
+            padding: 10px 0;
+            min-width: 200px;
+            display: none;
+            z-index: 1001;
+        }
+
+        .dropdown-item {
+            padding: 12px 20px;
+            color: var(--text-white);
+            text-decoration: none;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(204, 255, 0, 0.1);
+            color: var(--brand-green);
+        }
+        
+    
+        /* --- BACKGROUND DECORATION (Floating Documents) --- */
+        .floating-icon {
+            position: absolute;
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .icon-left { top: 50%; left: 5%; width: 100px; transform: rotate(15deg); }
+        .icon-right { top: 50%; right: 5%; width: 100px; transform: rotate(15deg); }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(15deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            margin-top: 100px;
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin: 0 0 20px 0;
+            font-weight: 700;
+            max-width: 900px;
+        }
+
+        .sub-head {
+            font-size: 1.1rem;
+            color: var(--text-grey);
+            margin-bottom: 40px;
+            max-width: 700px;
+        }
+
+        .pill-badge {
+            background: rgba(255,255,255,0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            color: var(--brand-green);
+            border: 1px solid rgba(204, 255, 0, 0.3);
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        .main-search {
+            width: 100%;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 20px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            color: white;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .main-search:focus { border-color: var(--brand-green); box-shadow: 0 0 20px rgba(204, 255, 0, 0.2); }
+
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #1a3a5e;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: rgb(9, 150, 44);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quick-links { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .link-pill {
+            background: transparent; border: 1px solid rgba(255,255,255,0.2);
+            padding: 10px 25px; border-radius: 30px; color: white; text-decoration: none; font-size: 0.9rem; transition: 0.3s;
+        }
+        .link-pill:hover { border-color: var(--brand-green); color: var(--brand-green); }
+
+        /* --- CONSULT FORM MODAL --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: var(--modal-bg);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid var(--brand-green);
+            width: 400px;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        .modal-close {
+            position: absolute; top: 15px; right: 20px; color: white; cursor: pointer; font-size: 1.5rem;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-input {
+            width: 100%; padding: 12px; background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 5px; color: white; box-sizing: border-box;
+        }
+        .form-btn {
+            width: 100%; background: var(--brand-green); color: #000; padding: 12px; border: none; font-weight: bold; border-radius: 5px; cursor: pointer;
+        }
+
+        /* --- ANIMATED CHAT CHARACTER --- */
+        .chat-widget {
+            position: fixed; bottom: 30px; right: 30px; z-index: 1500; display: flex; flex-direction: column; align-items: flex-end;
+        }
+
+        .chat-bubble {
+            background: white; color: #000; padding: 10px 15px; border-radius: 15px 15px 0 15px;
+            margin-bottom: 10px; font-size: 0.9rem; font-weight: 500;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: float 3s ease-in-out infinite;
+            display: block;
+        }
+
+        .chat-avatar {
+            width: 70px; height: 70px;
+            background: var(--brand-green);
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(204, 255, 0, 0.4);
+            font-size: 35px;
+            position: relative;
+            animation: bounce 2s infinite;
+        }
+
+        /* The actual Chat Box */
+        .chat-window {
+            position: fixed; bottom: 110px; right: 30px;
+            width: 300px; background: white; color: #333;
+            border-radius: 15px; padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: none; z-index: 1500;
+        }
+        
+        .chat-option {
+            background: #f0f0f0; padding: 10px; margin: 5px 0; border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: 0.2s;
+        }
+        .chat-option:hover { background: var(--brand-green); color: black; }
+
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+        @keyframes slideUp { from {transform: translateY(50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-left">
+            <div class="logo">
+                <img src="expert matter logo.png" alt="expert matter logo.png"> 
+            </div>
+            <button class="consult-btn" onclick="toggleModal()">Consult an Expert</button>
+        </div>
+
+        <ul class="nav-links">
+            <li>Business Setup</li>
+            <li>Tax Filing</li>
+            <li>Legal Drafting</li>
+            <li>Wealth Recovery</li>
+            <li>More</li>
+        </ul>
+
+        <div class="nav-right">
+            <button class="login-btn">Login</button>
+             <div class="nav-right">
+            <div class="hamburger" onclick="toggleDropdown()">☰</div>
+            <div class="dropdown" id="hamburgerDropdown">
+                <a href="#about" class="dropdown-item">About Us</a>
+                <a href="#contact" class="dropdown-item">Contact Us</a>
+                <a href="#refer" class="dropdown-item">Refer a Friend</a>
+                <a href="#partner" class="dropdown-item">Partner with Us</a>
+                <a href="#" class="dropdown-item" onclick="toggleModal()">Talk to an Expert</a>
+            </div>
+            
+
+        </div>
+    </nav>
+
+    <section class="hero">
+        <svg class="floating-icon icon-left" viewBox="0 0 24 24" fill="white"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+        <svg class="floating-icon icon-right" viewBox="0 0 24 24" fill="white"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
+        
+        <h1>Build Your Wealth with Confidence.<br>Secure It with ExpertMatter.</h1>
+        <p class="sub-head">Simplifying Legal, Wealth, and Recovery, the <span class="pill-badge">Expert-Driven</span> Way.</p>
+
+        <div class="search-wrapper">
+            <input type="text" class="main-search" placeholder="">
+
+            <button class="search-btn">🔍</button>
+        </div>
+
+        <div class="quick-links">
+            <a href="#" class="link-pill">IEPF Recovery</a>
+            <a href="#" class="link-pill">GST Registration</a>
+            <a href="#" class="link-pill">Company Formation</a>
+            <a href="#" class="link-pill">Trademark</a>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="consultModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="toggleModal()">×</div>
+            <h2 style="color: var(--brand-green); margin-top: 0;">Consult an Expert</h2>
+            <p style="font-size: 0.9rem; opacity: 0.8;">Fill the details below. Our legal team will contact you within 2 hours.</p>
+            
+            <div class="form-group"><input type="text" class="form-input" placeholder="Your Full Name"></div>
+            <div class="form-group"><input type="email" class="form-input" placeholder="Email Address"></div>
+            <div class="form-group"><input type="text" class="form-input" placeholder="Describe your Query (e.g. IEPF Claim)"></div>
+            <button class="form-btn" onclick="alert('Request Sent! An expert will call you shortly.')">Request Call Back</button>
+        </div>
+    </div>
+
+    <div class="chat-widget">
+        <div class="chat-bubble" id="chatBubble">How may I help you? 👋</div>
+        <div class="chat-avatar" onclick="toggleChat()">
+            🤖 </div>
+    </div>
+
+    <div class="chat-window" id="chatWindow">
+        <h3 style="margin-top:0;">Expert Assistant</h3>
+        <p style="font-size: 0.9rem; color: #666;">Select a topic to start:</p>
+        <div class="chat-option">How may I help you today?</div>
+        <div class="chat-option">Chat with us directly</div>
+        <div class="chat-option">Check IEPF Claim Status</div>
+    </div>
+
+    <script>
+        // Typewriter effect for search placeholder
+        const texts = [
+            "How can we help you today?",
+            "Try 'GST registration'",
+            "Try 'Company formation'",
+            "Try 'Trademark'"
+        ];
+        let currentTextIndex = 0;
+        let currentCharIndex = 0;
+        const input = document.querySelector('.main-search');
+
+        function typeWriter() {
+            const currentText = texts[currentTextIndex];
+            if (currentCharIndex < currentText.length) {
+                input.placeholder = currentText.substring(0, currentCharIndex + 1);
+                currentCharIndex++;
+                setTimeout(typeWriter, 100); // Typing speed
+            } else {
+                // Finished typing, wait 2 seconds then move to next text
+                setTimeout(() => {
+                    currentTextIndex = (currentTextIndex + 1) % texts.length;
+                    currentCharIndex = 0;
+                    typeWriter();
+                }, 2000);
+            }
+        }
+
+        // Start the typewriter effect on page load
+        window.addEventListener('load', typeWriter);
+
+        // Modal Logic
+        function toggleModal() {
+            const modal = document.getElementById('consultModal');
+            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        // Chat Logic
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatBubble = document.getElementById('chatBubble');
+            
+            if (chatWindow.style.display === 'block') {
+                chatWindow.style.display = 'none';
+                chatBubble.style.display = 'block';
+            } else {
+                chatWindow.style.display = 'block';
+                chatBubble.style.display = 'none';
+            }
+        }
+
+        // Chat Logic
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatBubble = document.getElementById('chatBubble');
+            
+            if (chatWindow.style.display === 'block') {
+                chatWindow.style.display = 'none';
+                chatBubble.style.display = 'block';
+            } else {
+                chatWindow.style.display = 'block';
+                chatBubble.style.display = 'none';
+            }
+        }
+         // Chat Logic
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatBubble = document.getElementById('chatBubble');
+            
+            if (chatWindow.style.display === 'block') {
+                chatWindow.style.display = 'none';
+                chatBubble.style.display = 'block';
+            } else {
+                chatWindow.style.display = 'block';
+                chatBubble.style.display = 'none';
+            }
+        }
+
+        // Hamburger Dropdown Logic
+        function toggleDropdown() {
+            const dropdown = document.getElementById('hamburgerDropdown');
+            dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpertMatter | Premium Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-blue: #061a33;
+            --brand-green: #ccff00;
+            --card-white: #ffffff;
+            --text-dark: #1a202c;
+            --text-grey: #718096;
+            --curve-black: #000000;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-blue);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* --- CONTAINER --- */
+        .section-container {
+            position: relative;
+            padding-top: 60px;
+            padding-bottom: 0; /* Space is handled by the curve */
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            z-index: 2;
+        }
+
+        /* --- CARDS GRID (The "Fan" Look) --- */
+        .cards-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 5; /* Behind the curve */
+            margin-bottom: -80px; /* Push cards down into the curve */
+            perspective: 1000px;
+        }
+
+        .white-card {
+            background: var(--card-white);
+            color: var(--text-dark);
+            border-radius: 12px;
+            padding: 30px 25px;
+            width: 260px;
+            min-height: 320px; /* Tall shape like screenshot */
+            box-shadow: 0 10px 30px rgba(35, 240, 62, 0.3);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* For expansion */
+        }
+
+        /* Hover & Active States */
+        .white-card:hover {
+            transform: translateY(-15px) !important;
+            box-shadow: 0 20px 40px rgba(204, 255, 0, 0.2);
+            z-index: 10;
+        }
+
+        .white-card.expanded {
+            position: absolute;
+            z-index: 20;
+            width: 320px;
+            min-height: 450px;
+            transform: scale(1.05) translateY(-50px) !important;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        /* Card Content Styling */
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #000203; /* Dark blue text */
+        }
+
+        .card-arrow {
+            color: #000102;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .white-card:hover .card-arrow {
+            color: var(--brand-green); /* ExpertMatter Green */
+            transform: translateX(5px);
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-black);
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        /* Faded Illustration Placeholder at Bottom */
+        .card-bg-icon {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            opacity: 0.05;
+            width: 150px;
+            height: 150px;
+            pointer-events: none;
+        }
+
+        /* --- EXPANSION CONTENT (Accordion Logic) --- */
+        .service-list {
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.5s ease;
+            overflow-y: auto;
+            border-top: 1px solid #eee;
+        }
+
+        .white-card.expanded .service-list {
+            max-height: 300px;
+            opacity: 1;
+            margin-top: 20px;
+            padding-top: 15px;
+        }
+
+        .service-item {
+            padding: 8px 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #f9f9f9;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .service-item:hover { color: #0d2847; font-weight: 600; }
+        .service-item::before { content: "•"; color: var(--brand-green); font-size: 1.2rem; }
+
+        /* --- CURVED BOTTOM SECTION --- */
+        .curve-container {
+            position: relative;
+            width: 100%;
+            z-index: 6; /* Sits ON TOP of the bottom of the cards */
+            pointer-events: none; /* Let clicks pass through if needed */
+        }
+
+        .black-footer {
+            background-color: var(--curve-black);
+            padding: 30px 6% 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 7;
+            pointer-events: auto;
+        }
+
+        /* The SVG Curve */
+        .svg-curve {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin-bottom: -1px; /* Remove gap */
+        }
+
+        /* Footer Content */
+        .footer-left h3 { margin: 0; font-size: 1.5rem; color: white; font-style: italic; opacity: 0.9; max-width: 300px; }
+        .footer-center { text-align: center; }
+        .laurel-icon { width: 60px; height: auto; margin-bottom: 10px; display: block; margin: 0 auto; }
+        .footer-badge { color: #FFD700; font-weight: 700; letter-spacing: 1px; font-size: 0.9rem; text-transform: uppercase; margin-top: 5px; display: block;}
+        .footer-right { display: flex; align-items: center; gap: 15px; }
+
+    
+
+        /* Floating Sidebar Tab */
+        .refer-tab {
+            position: fixed; top: 50%; right: 0; transform: translateY(-50%);
+            background: #f1c40f; color: #000; font-weight: bold;
+            padding: 15px 10px; border-radius: 8px 0 0 8px;
+            writing-mode: vertical-rl; text-orientation: mixed;
+            cursor: pointer; z-index: 100;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .cards-wrapper { flex-direction: column; align-items: center; margin-bottom: 0; }
+            .white-card { width: 90%; margin-bottom: 20px; }
+            .black-footer { flex-direction: column; gap: 25px; text-align: center; }
+            .white-card.expanded { position: relative; width: 90%; transform: none !important; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="section-container">
+        
+        <h1>Expert Services for <span style="color:var(--brand-green)">Every Stage</span></h1>
+
+        <div class="cards-wrapper" id="cardGrid">
+            
+            <div class="white-card" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <div class="card-title">Business Setup</div>
+                    <div class="card-arrow">▶</div>
+                </div>
+                <div class="card-desc">Expert legal assistance tailored to your needs. Registration made simple.</div>
+                <div class="service-list">
+                    <div class="service-item">Private Limited</div>
+                    <div class="service-item">LLP Registration</div>
+                    <div class="service-item">GST Setup</div>
+                    <div class="service-item" style="color:var(--brand-green)">Click to Close</div>
+                </div>
+                <svg class="card-bg-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2V9h-2V7h8v12zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+            </div>
+
+            <div class="white-card" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <div class="card-title">Tax & Compliance</div>
+                    <div class="card-arrow">▶</div>
+                </div>
+                <div class="card-desc">Connect with professionals who understand your case and filing needs.</div>
+                <div class="service-list">
+                    <div class="service-item">Income Tax Filing</div>
+                    <div class="service-item">TDS Returns</div>
+                    <div class="service-item">Audit Support</div>
+                    <div class="service-item" style="color:var(--brand-green)">Click to Close</div>
+                </div>
+                 <svg class="card-bg-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            </div>
+
+            <div class="white-card" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <div class="card-title">Legal Docs</div>
+                    <div class="card-arrow">▶</div>
+                </div>
+                <div class="card-desc">End-to-end guidance with transparency, trust, and verified documentation.</div>
+                <div class="service-list">
+                    <div class="service-item">NDA Drafting</div>
+                    <div class="service-item">Wills & Trusts</div>
+                    <div class="service-item">Agreements</div>
+                    <div class="service-item" style="color:var(--brand-green)">Click to Close</div>
+                </div>
+                <svg class="card-bg-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M14 17H4v2h10v-2zm6-8H4v2h16V9zM4 15h16v-2H4v2zM4 5v2h16V5H4z"/></svg>
+            </div>
+
+            <div class="white-card" style="border: 2px solid var(--brand-green);" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <div class="card-title" style="color:#061a33">Wealth Matters</div>
+                    <div class="card-arrow">▶</div>
+                </div>
+                <div class="card-desc">Recover, manage, and protect your financial assets with expert assistance.</div>
+                <div class="service-list">
+                    <div class="service-item">IEPF Claim</div>
+                    <div class="service-item">Duplicate Shares</div>
+                    <div class="service-item">Mutual Funds</div>
+                    <div class="service-item">Insurance Claim</div>
+                    <div class="service-item" style="color:var(--brand-green)">Click to Close</div>
+                </div>
+                <svg class="card-bg-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+            </div>
+
+        </div>
+
+        <div class="curve-container">
+            <svg class="svg-curve" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path fill="#000000" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,160C960,139,1056,149,1152,160C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+
+            <div class="black-footer">
+                <div class="footer-left">
+                    <h3>"Registration, Filing, and Wealth Recovery in one platform just makes sense."</h3>
+                </div>
+
+                <div class="footer-center">
+                    <div style="font-size:30px; color:#FFD700; line-height:1;">🌿 ★ ★ ★ 🌿</div>
+                    <span class="footer-badge">Voted No. 1 Legal Platform</span>
+                    <div style="color:grey; font-size:0.8rem; margin-top:5px;">19,000+ Reviews</div>
+                </div>
+
+                
+
+    </div>
+
+    <div class="refer-tab">Refer a Friend</div>
+
+    <script>
+        function toggleCard(card) {
+            // Collapse all others
+            const allCards = document.querySelectorAll('.white-card');
+            allCards.forEach(c => {
+                if (c !== card) {
+                    c.classList.remove('expanded');
+                }
+            });
+            // Toggle clicked
+            card.classList.toggle('expanded');
+        }
+    </script>
+</body>
+</html>
+
+
+
+        <div class="update-strip">
+        <div class="marquee">
+            📢 BREAKING: New guidelines for IEPF Claim Recovery released — Protect your shares today. | Subscribe Our Newsletter for more updates.
+    </div>
+    <style> 
+    /* Update Strip */
+        .update-strip {
+            background: #060d1a;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(204, 255, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .marquee {
+            display: inline-block;
+            white-space: nowrap;
+            color: var(--neon-green);
+            font-weight: 500;
+            animation: marquee 25s linear infinite; }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+        
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        :root {
+            --bg-blue: #061a33;
+            --brand-green: #ccff00;
+            --text-white: #ffffff;
+            --text-grey: #b0b8c4;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        .why-choose-section {
+            background-color: var(--bg-blue);
+            color: var(--text-white);
+            padding: 100px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            overflow: hidden;
+            min-height: 80vh;
+        }
+
+        /* --- LEFT CONTENT --- */
+        .content-left { flex: 1; max-width: 600px; }
+
+        .tagline {
+            color: #4285F4; /* Matching the blue accent in screenshot */
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .main-heading {
+            font-size: 3rem;
+            margin: 0 0 20px 0;
+            font-weight: 700;
+        }
+
+        .main-heading span { color: var(--brand-green); text-shadow: 0 0 10px rgba(204, 255, 0, 0.3); }
+
+        .sub-text { color: var(--text-grey); margin-bottom: 40px; line-height: 1.6; }
+
+        .feature-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            opacity: 0; /* For scroll reveal */
+            transform: translateX(-20px);
+            transition: 0.6s all ease-out;
+        }
+
+        .feature-item.active { opacity: 1; transform: translateX(0); }
+
+        .feature-icon {
+            width: 45px; height: 45px;
+            background: rgba(66, 133, 244, 0.1);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: #4285F4; flex-shrink: 0;
+        }
+
+        .feature-text h4 { margin: 0 0 5px 0; font-size: 1.2rem; }
+        .feature-text p { margin: 0; color: var(--text-grey); font-size: 0.9rem; }
+
+        /* --- RIGHT ORBITAL GRAPHIC --- */
+        .orbital-container {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+        }
+
+        /* Central Logo */
+        .central-logo {
+            width: 120px; height: 120px;
+            background: #2b59ff;
+            border-radius: 24px;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 10;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            animation: logoPulse 4s infinite ease-in-out;
+        }
+
+        .central-logo img { width: 200%; filter: brightness(0) invert(1); }
+
+        /* Orbit Path */
+        .orbit-path {
+            position: absolute;
+            width: 380px; height: 380px;
+            border: 1px dashed rgba(255,255,255,0.15);
+            border-radius: 50%;
+            animation: rotateOrbit 60s linear infinite;
+        }
+
+        /* Stat Floating Cards */
+        .stat-card {
+            position: absolute;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex; align-items: center; gap: 12px;
+            width: 180px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: float 6s infinite ease-in-out;
+            z-index: 11;
+        }
+
+        /* Positioning the 4 stats around the circle */
+        .stat-1 { top: 0; left: 50%; transform: translateX(-50%); animation-delay: 0s; }
+        .stat-2 { right: -20px; top: 50%; transform: translateY(-50%); animation-delay: 1.5s; }
+        .stat-3 { bottom: 0; left: 50%; transform: translateX(-50%); animation-delay: 3s; }
+        .stat-4 { left: -20px; top: 50%; transform: translateY(-50%); animation-delay: 4.5s; }
+
+        .stat-card .icon { font-size: 1.5rem; }
+        .stat-card .num { font-weight: 700; font-size: 1.1rem; display: block; }
+        .stat-card .label { font-size: 0.75rem; color: var(--text-grey); text-transform: uppercase; }
+
+        @keyframes rotateOrbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, -15px); }
+        }
+        /* Specific override for side-positioned floating to prevent overlap */
+        .stat-2, .stat-4 { animation: floatSide 6s infinite ease-in-out; }
+        @keyframes floatSide {
+            0%, 100% { transform: translate(0, -50%); }
+            50% { transform: translate(15px, -50%); }
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 20px 40px rgba(43, 89, 255, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 25px 50px rgba(43, 89, 255, 0.5); }
+        }
+
+        @media (max-width: 968px) {
+            .why-choose-section { flex-direction: column; text-align: center; }
+            .feature-item { justify-content: center; text-align: left; }
+            .orbital-container { transform: scale(0.8); }
+        }
+    </style>
+</head>
+<body>
+
+<section class="why-choose-section" id="whyChoose">
+    
+    <div class="content-left">
+        <span class="tagline">Trust Expertise</span>
+        <h2 class="main-heading">Why Choose <span>ExpertMatter</span>?</h2>
+        <p class="sub-text">We believe in building trust through quality work and consistent support — not exaggerated claims.</p>
+
+        <div class="feature-item">
+            <div class="feature-icon">👤</div>
+            <div class="feature-text">
+                <h4>Expert-led, practical guidance</h4>
+                <p>Real-world solutions from industry veterans who prioritize your success.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">👁️</div>
+            <div class="feature-text">
+                <h4>Clear and transparent processes</h4>
+                <p>Full visibility into every step. No hidden fees, no complex legal jargon.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">✅</div>
+            <div class="feature-text">
+                <h4>Compliance accuracy and clarity</h4>
+                <p>Meticulous attention to detail ensures your business remains 100% compliant.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">🛡️</div>
+            <div class="feature-text">
+                <h4>Professional and confidential handling</h4>
+                <p>Strict privacy protocols to protect all customer details and sensitive information.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="orbital-container">
+        <div class="central-logo">
+            <img src="briefcase.png" alt="briefcase.png">
+        </div>
+
+        <div class="orbit-path"></div>
+
+        <div class="stat-card stat-1">
+            <div class="icon">✅</div>
+            <div>
+                <span class="num" data-target="100000">100K+</span>
+                <span class="label">Cases Resolved</span>
+            </div>
+        </div>
+
+        <div class="stat-card stat-2">
+            <div class="icon">👥</div>
+            <div>
+                <span class="num" data-target="500000">500K+</span>
+                <span class="label">Happy Users</span>
+            </div>
+        </div>
+
+        <div class="stat-card stat-3">
+            <div class="icon">⭐</div>
+            <div>
+                <span class="num">4.8/5</span>
+                <span class="label">Global Rating</span>
+            </div>
+        </div>
+
+        <div class="stat-card stat-4">
+            <div class="icon">⚖️</div>
+            <div>
+                <span class="num" data-target="300">30</span>
+                <span class="label">Legal Experts</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Intersection Observer for Scroll Animations
+    const observerWhyChoose = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Animate Text Items
+                document.querySelectorAll('.feature-item').forEach((item, index) => {
+                    setTimeout(() => item.classList.add('active'), index * 200);
+                });
+                
+                // Trigger Count-up Numbers
+                animateNumbers();
+            }
+        });
+    }, { threshold: 0.3 });
+
+    observerWhyChoose.observe(document.querySelector('#whyChoose'));
+
+    function animateNumbers() {
+        const counters = document.querySelectorAll('.num[data-target]');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const increment = target / 100;
+            let count = 0;
+
+            const updateCount = () => {
+                if (count < target) {
+                    count += increment;
+                    counter.innerText = Math.ceil(count).toLocaleString() + (target > 999 ? '+' : '');
+                    setTimeout(updateCount, 20);
+                } else {
+                    counter.innerText = target.toLocaleString() + '+';
+                }
+            };
+            updateCount();
+        });
+    }
+</script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works | ExpertMatter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-blue: #061a33;
+            --text-white: #ffffff;
+            --text-grey: #b0b8c4;
+            --neon-green: #ccff00;
+            /* Specific step colors adapted for dark mode */
+            --step-blue: #3b82f6;
+            --step-yellow: #eab308;
+            --step-green: #22c55e;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-blue);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        /* --- SECTION CONTAINER --- */
+        .process-section {
+            padding: 100px 8%;
+            text-align: center;
+            background-color: var(--bg-blue); /* Maintains dark theme continuity  */
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-white);
+        }
+
+        .section-subtitle {
+            color: var(--text-grey);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 80px;
+            line-height: 1.5;
+        }
+
+        /* --- STEPS GRID --- */
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .step-item {
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0; /* Hidden initially for animation [cite: 242] */
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Animation trigger class */
+        .step-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- NUMBER BOXES --- */
+        .number-box {
+            width: 90px;
+            height: 90px;
+            border-radius: 20px; /* Rounded square shape from image */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3); /* Soft shadow for depth */
+            position: relative;
+        }
+
+        /* Subtle glow beneath the boxes */
+        .number-box::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%) scale(0.8);
+            filter: blur(25px);
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        /* Distinct Colors */
+        .box-blue { background-color: var(--step-blue); }
+        .box-blue::after { background-color: var(--step-blue); }
+
+        .box-yellow { background-color: var(--step-yellow); color: #061a33; }
+        .box-yellow::after { background-color: var(--step-yellow); }
+
+        .box-green { background-color: var(--step-green); }
+        .box-green::after { background-color: var(--step-green); }
+
+
+        /* --- STEP CONTENT --- */
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-white);
+        }
+
+        .step-desc {
+            color: var(--text-grey);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .steps-container { flex-direction: column; align-items: center; }
+            .step-item { margin-bottom: 50px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="process-section" id="howItWorks">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">A structured, secure, and expert-led process designed for your peace of mind.</p>
+
+        <div class="steps-container">
+            <div class="step-item">
+                <div class="number-box box-blue">1</div>
+                <div class="step-title">Consultation</div>
+                <p class="step-desc">We understand your requirement through an initial discussion and assess the scope of legal, tax, or compliance support needed.</p>
+            </div>
+
+            <div class="step-item">
+                <div class="number-box box-yellow">2</div>
+                <div class="step-title">Expert Assignment</div>
+                <p class="step-desc">Based on the requirement, we assign the matter to the appropriate legal, CA, or compliance professional from our partner network.</p>
+            </div>
+
+            <div class="step-item">
+                <div class="number-box box-green">3</div>
+                <div class="step-title">Execution & Delivery</div>
+                <p class="step-desc">The assigned expert manages the task with defined timelines, clear communication, and structured delivery.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for Sequential Reveal Animation [cite: 235, 247]
+        const processSection = document.getElementById('howItWorks');
+        const steps = document.querySelectorAll('.step-item');
+
+        const observerOptions = {
+            threshold: 0.3 // Trigger when 30% of the section is visible
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate steps sequentially with a delay
+                    steps.forEach((step, index) => {
+                        setTimeout(() => {
+                            step.classList.add('visible');
+                        }, index * 300); // 300ms staggered delay for process feel [cite: 242]
+                    });
+                    // Unobserve after animation runs once
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        observer.observe(processSection);
+    </script>
+
+</body>
+</html>
+
+
+    <script>
+        // Intersection Observer for Sequential Reveal Animation [cite: 235, 247]
+        const processSection1 = document.getElementById('howItWorks');
+        const steps1 = document.querySelectorAll('.step-item');
+
+        const observerOptions1 = {
+            threshold: 0.3 // Trigger when 30% of the section is visible
+        };
+
+        const observer1 = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate steps sequentially with a delay
+                    steps1.forEach((step, index) => {
+                        setTimeout(() => {
+                            step.classList.add('visible');
+                        }, index * 300); // 300ms staggered delay for process feel [cite: 242]
+                    });
+                    // Unobserve after animation runs once
+                    observer1.unobserve(entry.target);
+                }
+            });
+        }, observerOptions1);
+
+        observer1.observe(processSection1);
+    </script>
+
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --bg-deep-blue: #061a33;
+            --card-glass: rgba(255, 255, 255, 0.05);
+            --neon-green: #ccff00;
+            --text-white: #f8f9fa;
+            --text-grey: #b0b8c4;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-deep-blue);
+            color: var(--text-white);
+        }
+
+        /* --- TESTIMONIAL SECTION --- */
+        .testimonials-section {
+            padding: 100px 0;
+            text-align: center;
+            overflow: hidden; /* Important for the infinite scroll */
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            color: var(--text-grey);
+            font-size: 1.1rem;
+            margin-bottom: 60px;
+        }
+
+        /* --- INFINITE CAROUSEL TRACK --- */
+        .carousel-container {
+            display: flex;
+            width: 100%;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 30px;
+            animation: scroll-left 35s linear infinite; /* Not too slow, nor high pace */
+            padding: 20px 0;
+        }
+
+        /* Duplicate track for seamless loop */
+        .carousel-track:hover {
+            animation-play-state: paused; /* Allows users to read comfortably */
+        }
+
+        @keyframes scroll-left {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(-50% - 15px)); }
+        }
+
+        /* --- TESTIMONIAL CARDS --- */
+        .testimonial-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            min-width: 380px;
+            max-width: 380px;
+            text-align: left;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--neon-green);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(204, 255, 0, 0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--neon-green);
+            object-fit: cover;
+            padding: 2px;
+        }
+
+        .user-meta h4 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .stars {
+            color: var(--neon-green);
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        .testimonial-text {
+            color: var(--text-grey);
+            line-height: 1.6;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .section-header h2 { font-size: 2.2rem; }
+            .testimonial-card { min-width: 300px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<section class="testimonials-section">
+    <div class="section-header">
+        <h2>Client Success Stories</h2>
+        <p>Hear from over 500k happy customers</p>
+    </div>
+
+    <div class="carousel-container">
+        <div class="carousel-track">
+            
+            <div class="testimonial-card">
+                <div class="user-info">
+                    <img src="https://images.unsplash.com/photo-1507152832244-10d45c7eda57?auto=format&fit=crop&q=80&w=150&h=150" alt="Ananya" class="avatar">
+                    <div class="user-meta">
+                        <h4>Ananya Sharma</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p class="testimonial-text">"ExpertMatter provided exceptional support, guiding me with patience through the property registration process. Truly professional."</p>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="user-info">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150&h=150" alt="Vikram" class="avatar">
+                    <div class="user-meta">
+                        <h4>Vikram Malhotra</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p class="testimonial-text">"Prompt and satisfactory service. The online lawyer consultation was seamless. Highly satisfied with their corporate compliance expertise."</p>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="user-info">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150" alt="Priya" class="avatar">
+                    <div class="user-meta">
+                        <h4>Priya Iyer</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p class="testimonial-text">"The Wealth Matters team helped me recover my long-lost IEPF claims within months. Their transparency and trust are unmatched."</p>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="user-info">
+                    <img src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?auto=format&fit=crop&q=80&w=150&h=150" alt="Sandeep" class="avatar">
+                    <div class="user-meta">
+                        <h4>Sandeep Gupta</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p class="testimonial-text">"Helpful and available. They addressed my complex tax queries immediately, ensuring everything went smoothly with the filings."</p>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="user-info">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150&h=150" alt="Meera" class="avatar">
+                    <div class="user-meta">
+                        <h4>Meera Reddy</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p class="testimonial-text">"Professional handling of sensitive legal documents. The digital drafting process was clear and incredibly efficient for our startup."</p>
+            </div>
+
+            <div class="testimonial-card"><div class="user-info"><img src="https://images.unsplash.com/photo-1507152832244-10d45c7eda57?auto=format&fit=crop&q=80&w=150&h=150" class="avatar"><div class="user-meta"><h4>Ananya Sharma</h4><div class="stars">★★★★★</div></div></div><p class="testimonial-text">"ExpertMatter provided exceptional support, guiding me with patience through the property registration process. Truly professional."</p></div>
+            <div class="testimonial-card"><div class="user-info"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150&h=150" class="avatar"><div class="user-meta"><h4>Vikram Malhotra</h4><div class="stars">★★★★★</div></div></div><p class="testimonial-text">"Prompt and satisfactory service. The online lawyer consultation was seamless. Highly satisfied with their corporate compliance expertise."</p></div>
+            <div class="testimonial-card"><div class="user-info"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150" class="avatar"><div class="user-meta"><h4>Priya Iyer</h4><div class="stars">★★★★★</div></div></div><p class="testimonial-text">"The Wealth Matters team helped me recover my long-lost IEPF claims within months. Their transparency and trust are unmatched."</p></div>
+            <div class="testimonial-card"><div class="user-info"><img src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?auto=format&fit=crop&q=80&w=150&h=150" class="avatar"><div class="user-meta"><h4>Sandeep Gupta</h4><div class="stars">★★★★★</div></div></div><p class="testimonial-text">"Helpful and available. They addressed my complex tax queries immediately, ensuring everything went smoothly with the filings."</p></div>
+            <div class="testimonial-card"><div class="user-info"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150&h=150" class="avatar"><div class="user-meta"><h4>Meera Reddy</h4><div class="stars">★★★★★</div></div></div><p class="testimonial-text">"Professional handling of sensitive legal documents. The digital drafting process was clear and incredibly efficient for our startup."</p></div>
+        </div>
+    </div>
+</section>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            /* Brand colors per briefing */
+            --bg-dark-blue: #061a33; /* [cite: 2, 95] */
+            --neon-green: #ccff00; /* [cite: 3, 96] */
+            --text-white: #f8f9fa; /* [cite: 5, 97] */
+            --text-grey: #b0b8c4; /* [cite: 5, 97] */
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark-blue); /*  */
+            color: var(--text-white);
+        }
+
+        .footer-main {
+            padding: 80px 8% 40px;
+            background-color: var(--bg-dark-blue);
+        }
+
+
+     
+
+        /* --- 2. LINK DIRECTORY --- */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .dir-column h4 {
+            color: var(--neon-green); /*  */
+            font-size: 1.0rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .dir-column ul { list-style: center; padding: 5; }
+        .dir-column li { margin-bottom: 20px; }
+
+        .dir-column a {
+            color: var(--text-grey);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            position: center; /* [cite: 74, 190, 359] */
+        }
+
+        .dir-column a::after {
+            content: '';
+            position: absolute;
+            width: 15;
+            height: 1.5px;
+            bottom: -2px;
+            left: 5;
+            background-color: var(--neon-green);
+            transition: width 0.3s ease; /* [cite: 208, 359] */
+        }
+
+        .dir-column a:hover { color: var(--text-white); }
+        .dir-column a:hover::after { width: 100%; }
+
+        /* --- 3. BOTTOM BAR (LOGO & BACK TO TOP) --- */
+        .footer-bottom-bar {
+            padding-top: 40px;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo Branding [cite: 102] */
+        .footer-logo img {
+            height: 130px;
+            filter: brightness(0) invert(1);
+        }
+
+        @keyframes logo-idle {
+            0%, 100% { filter: drop-shadow(0 0 0px var(--neon-green)); }
+            50% { filter: drop-shadow(0 0 8px var(--neon-green)); } /*  */
+        }
+
+        /* Back to Top Button */
+
+ .btn-top {
+            background-color: var(--neon-green);
+            color: var(--bg-dark-blue);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 0 10px rgba(204, 255, 0, 0.3);
+            animation: pulse-glow 2s infinite; /* Sober pulse animation */
+            transition: transform 0.3s;
+        }
+
+        .btn-top:hover {
+            transform: scale(1.1);
+            background-color: white;
+        }
+</style
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(204, 255, 0, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(204, 255, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(204, 255, 0, 0); }
+        }
+
+        @media (max-width: 900px) {
+            .stats-grid, .directory-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+
+</head>
+<body>
+
+
+    <div class="directory-grid">
+        <div class="dir-column">
+            <h4>Expert Consultation</h4>
+            <ul>
+                <li><a href="#">Talk To Company Secretary</a></li>
+                <li><a href="#">Talk To CA</a></li>
+                <li><a href="#">Talk To Lawyer</a></li>
+                <li><a href="#">Property Lawyer</a></li>
+            </ul>
+        </div>
+        <div class="dir-column">
+            <h4>Business Setup</h4>
+            <ul>
+                <li><a href="#">Company Registration</a></li>
+                <li><a href="#">LLP Registration</a></li>
+                <li><a href="#">Startup India Scheme</a></li>
+                <li><a href="#">NGO Registration</a></li>
+            </ul>
+        </div>
+        <div class="dir-column">
+            <h4>Wealth Matters</h4> <ul>
+                <li><a href="#">IEPF Claim</a></li> <li><a href="#">Duplicate Share Issue</a></li> <li><a href="#">Transmission of Shares</a></li> <li><a href="#">Mutual Fund Redemption</a></li> </ul>
+        </div>
+        <div class="dir-column">
+            <h4>IP & Compliance</h4>
+            <ul>
+                <li><a href="#">Trademark Registration</a></li>
+                <li><a href="#">FSSAI Registration</a></li>
+                <li><a href="#">PSARA License</a></li>
+                <li><a href="#">GST Filing</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+        <div class="footer-logo">
+            <img src="expert matter logo.png" alt="expert matter logo.png">
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-grey);">
+            © 2024 ExpertMatter. Premium Legal & Compliance Advisory.
+        </div>
+       <a href="#top" class="btn-top" title="Back to Top">↑</a>
+</div>
+</footer>
